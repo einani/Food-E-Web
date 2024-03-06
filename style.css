@@ -503,6 +503,11 @@ article .icon {
     border-color: rgb(163, 163, 163);
 }
 
+table {
+    color: white;
+    /* background-color: white; */
+}
+
 /* CONTACTS */
 
 #design {
