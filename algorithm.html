@@ -8,6 +8,17 @@
         <link rel="stylesheet" href="mediaqueries.css" /> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+        <py-env>
+            <!-- - matplotlib -->
+            - numpy
+            - pandas
+            - math
+            - serial
+            - sleep
+            - ImageModel
+            - PiCamera
+            - time
+        </py-env>
     </head>
     <body>
         <nav id="desktop-nav">
@@ -39,6 +50,477 @@
                 </div>
             </div>
         </nav>
+        <py-script>
+            <!-- #-------------------------------------------------------------------------------
+            # Food-E Detection Program with Python (ML Project)
+            # By: Andy Ha, Marian Abadir, Stephen Yi, Ege Inanici, Hailab Nega
+            # Date: February 5th, 2024
+            # Note, be sure to review the ReadMe for instructions on how to construct
+            # this program and run it
+            #
+            # (c) 2020 by Jen Fox, Microsoft
+            # MITS License
+            #------------------------------------------------------------------------------- -->
+
+            <!-- # Import Raspberry Pi GPIO Library Button Class -->
+            <!-- from gpiozero import Button, LED, PWMLED -->
+            from picamera import PiCamera
+            from time import sleep
+            from lobe import ImageModel
+
+            import numpy as np
+            import pandas as pd
+            import math as math
+            import serial
+            import time
+
+            <!-- # Create the inputs/outputs of the camera objects -->
+            print("Begin")
+            button = Button(2)
+
+            gpio17 = LED(17) 
+            gpio27 = LED(27)
+            <!-- #white_led = PWMLED(24) # Status of the light and retake photo -->
+
+            camera = PiCamera()
+
+            <!-- # Load Lobe TensorFlow Model --> In the ("") change the model file depending on -->
+            <!-- # is being detected when using the AI -->
+            model = ImageModel.load('/home/foode/Lobe/Food-E Actual AI Detection')
+
+            <!-- # Take photo method or definition -->
+            def taking_photo():
+            <!-- # Beginning the photo taking process for confirmation -->
+            print("Taking Photo")
+
+            <!-- # Starting the camera preview -->
+            camera.start_preview(alpha = 200)
+
+            <!-- # Wait for the light to adjust to detect -->
+            sleep(2)
+
+            <!-- # The input image file path is here -> Change the file if needed -->
+            camera.capture('/home/foode/Pictures/image.jpg')
+
+            <!-- # Stop Camera -->
+            camera.stop_preview()
+
+            <!-- # The detection/identification method and testing with LED for confirmation -->
+            def detection(label):
+                <!-- # Beginnign the detection process with a confirmation statement -->
+                print(label)
+
+                <!-- # Detects Apple - Food -->
+                if label == "Apple":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Banana - Food -->
+                if label == "Banana":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Pasta - Food -->
+                if label == "Pasta":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Lettuce - Food -->
+                if label == "Lettuce":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Garlic - Food -->
+                if label == "Garlic":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Parmesan - Food -->
+                if label == "Parmesan":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Mayonnaise - Food -->
+                if label == "Mayonnaise":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Dijon - Food -->
+                if label == "Dijon":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Milk - Food -->
+                if label == "Milk":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Lemon - Food -->
+                if label == "Lemon":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Worcestershire - Food -->
+                if label == "Worcestershire":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Egg - Food -->
+                if label == "Egg":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Olive Oil - Food -->
+                if label == "Olive Oil":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Butter - Food -->
+                if label == "Butter":
+                gpio17.on()
+                gpio27.off()
+
+                <!-- # Detects Phone - Not Food -->
+                if label == "Phone":
+                gpio17.off()
+                gpio27.on()
+
+                <!-- # Detects Andy - Not Food -->
+                if label == "Andy":
+                gpio17.off()
+                gpio27.on()
+
+                <!-- # ADD MORE HERE (FOOD INGREDIANTS) -->
+
+            <!-- # empty_dict = {} -->
+
+            empty_list = [] 
+
+            while True:
+
+                <!-- # Main Function that uses both methods or definitions -->
+                while True:
+                    if not button.is_pressed:
+                        <!-- # Begin taking photos of the object or food -->
+                        taking_photo()
+
+                        <!-- # Run the photo through Lobe TensorFlow Model File for confirmation of identification -->
+                        result = model.predict_from_file('/home/foode/Pictures/image.jpg')
+
+                        <!-- # Change the image path -->
+                        detection(result.prediction)
+
+                        result_label = str(result.prediction)
+
+                        empty_list.append(result_label)
+
+                        user_input = input("Press Q to quit: ")
+
+                        if user_input == 'q':
+                            break
+
+
+                    sleep(1)
+
+                <!-- #-----------------------# End of the code for the detection #---------------------------------------------
+
+                # Ege's Algorithm Code / Partially Fixed By Andy
+
+                # This program reads a CSV file, converting it into a dicitonary where the keys represent the column names and the data corresponding to that column. -->
+
+                <!-- # This the list that takes the items scanned and prints out the empty list (Testing) -->
+                <!-- #     print('This is the empty list:', empty_list) -->
+
+                <!-- # This takes the list and puts the item in a set where the duplicate items are deleted (Testing) -->
+                set_list = list(set(empty_list))
+                <!-- #     print('This is the set list:', set_list) -->
+
+                <!-- # The non-duplicate set is sent to the scanned list that is connected to the algorithm and then used with no duplicate items -->
+                Scanned_lst = list(set_list)
+                print('This is the scanned list:', Scanned_lst)
+
+                def convert_csv_to_dict(file_path, file_path_2):
+
+                    <!-- # Transpose CSV and read the file into a DataFrame -->
+                    pd.read_csv(file_path, header=None).T.to_csv(file_path_2, header=False, index=False)
+
+                    <!-- # Reads the CSV file in a DataFrame -->
+                    readFile = pd.read_csv(file_path_2)
+
+                    <!-- # converts DataFrame to NUmpy array -->
+                    nmpyFile = readFile.to_numpy()
+
+                    <!-- # Create an empty dictionary to store the data -->
+                    myDictionary = {"Filename": file_path}
+
+                    <!-- # Iterate over the columns of the DataFrame -->
+                    for i in range(1, 32):
+
+                        <!-- # Assigns the column values to corresponding key from the dictionary -->
+                        myDictionary[readFile.columns[i]] = nmpyFile[1:,i]
+
+                    <!-- # Remove all zero padding in csv ingredients
+                    #(my current method to transpose is to zero pad to equalize rows and columns) -->
+                    for key in myDictionary:
+                        temp = ['-MAX-']
+                        old = myDictionary[key]
+                        for i in range(len(old)):
+                            if (old[i] != '0'):
+                                temp.append(old[i])
+
+                        <!-- #temp.append('-MAX-') -->
+                        myDictionary[key] = temp
+
+                    return myDictionary
+
+
+                <!-- Recipe_dict = convert_csv_to_dict(r"C:\Users\eggyb\Downloads\Recipes - Ingredients.csv", r"C:\Users\eggyb\Downloads\Copy of Recipes - Ingredients.csv") -->
+                Recipe_dict = convert_csv_to_dict(r"/home/foode/Food-E/Algorithm/One.csv", r"/home/foode/Food-E/Algorithm/Two.csv")
+
+                def countX(lst, x):
+                    count = 0
+                    for ele in lst:
+                        if (ele == x):
+                            count = count + 1
+                    return count
+
+                MainIng_dict = {10: [], 20: [], 30: [], 40: [], 50: []}
+
+                def reset(inp, out):
+
+                    for key in inp:
+                        if (key != 'Filename'):
+                            if (int(key) < 20):
+                                old = inp[key]
+                                for i in range(len(old)):
+                                    out[10].append(old[i])
+                            elif (int(key) < 30):
+                                old = inp[key]
+                                for i in range(len(old)):
+                                    out[20].append(old[i])
+                            elif (int(key) < 40):
+                                old = inp[key]
+                                for i in range(len(old)):
+                                    out[30].append(old[i])
+                            elif (int(key) < 50):
+                                old = inp[key]
+                                for i in range(len(old)):
+                                    out[40].append(old[i])
+                            elif (int(key) < 60):
+                                old = inp[key]
+                                for i in range(len(old)):
+                                    out[50].append(old[i])
+
+
+                    temp = {}
+                    temp_1 = {}
+                    temp_2 = {}
+                    temp_3 = {}
+                    temp_4 = {}
+                    temp_5 = {}
+
+
+                    for key in out:
+                        for value in out[key]:
+                            temp.update({value: 0})
+
+                    for ingredient in temp:
+                        temp_1.update({ingredient: countX(out[10], ingredient)})
+                        temp_2.update({ingredient: countX(out[20], ingredient)})
+                        temp_3.update({ingredient: countX(out[30], ingredient)})
+                        temp_4.update({ingredient: countX(out[40], ingredient)})
+                        temp_5.update({ingredient: countX(out[50], ingredient)})
+
+                    return temp_1, temp_2, temp_3, temp_4, temp_5
+
+                temp_1, temp_2, temp_3, temp_4, temp_5 = reset(Recipe_dict, MainIng_dict)
+
+                def foodGroup(dict_1, dict_2, dict_3, dict_4, dict_5):
+                    for key in dict_1:
+                        if (key != '-MAX-'):
+                            dict_1[key] = dict_1[key] / dict_1['-MAX-']
+
+                    for key in dict_2:
+                        if (key != '-MAX-'):
+                            dict_2[key] = dict_2[key] / dict_2['-MAX-']
+
+
+                    for key in dict_3:
+                        if (key != '-MAX-'):
+                            dict_3[key] = dict_3[key] / dict_3['-MAX-']
+
+                    for key in dict_4:
+                        if (key != '-MAX-'):
+                            dict_4[key] = dict_4[key] / dict_4['-MAX-']
+
+                    for key in dict_5:
+                        if (key != '-MAX-'):
+                            dict_5[key] = dict_5[key] / dict_5['-MAX-']
+
+                    return dict_1, dict_2, dict_3, dict_4, dict_5
+
+                temp_1, temp_2, temp_3, temp_4, temp_5 = foodGroup(temp_1, temp_2, temp_3, temp_4, temp_5)
+
+                def PrimALG(temp_1, temp_2, temp_3, temp_4, temp_5, Scanned_lst, lowBound, highBound):
+                    ingred = list(temp_1.keys()) 
+                    name1 = list(temp_1.values()) 
+                    name2 = list(temp_2.values())
+                    name3 = list(temp_3.values())
+                    name4 = list(temp_4.values())
+                    name5 = list(temp_5.values())
+
+                    name_1 = []
+                    for i in range(len(name1)): 
+                        if (name1[i] < highBound):   
+                            if (name1[i] >= lowBound): 
+                                name_1.append(i) 
+
+                    mainI_1 = []
+                    for j in range(len(name_1)): 
+                        mainI_1.append(ingred[name_1[j]]) 
+
+                    name_2 = []
+                    for i in range(len(name2)):
+                        if (name2[i] < highBound):
+                            if (name2[i] >= lowBound):
+                                name_2.append(i)
+
+                    mainI_2 = []
+                    for j in range(len(name_2)):
+                        mainI_2.append(ingred[name_2[j]])
+
+
+                    name_3 = []
+                    for i in range(len(name3)):
+                        if (name3[i] < highBound):
+                            if (name3[i] >= lowBound):
+                                name_3.append(i)
+
+                    mainI_3 = []
+                    for j in range(len(name_3)):
+                        mainI_3.append(ingred[name_3[j]])
+
+
+                    name_4 = []
+                    for i in range(len(name4)):
+                        if (name4[i] < highBound):
+                            if (name4[i] >= lowBound):
+                                name_4.append(i)
+
+                    mainI_4 = []
+                    for j in range(len(name_4)):
+                        mainI_4.append(ingred[name_4[j]])
+
+
+                    name_5 = []
+                    for i in range(len(name5)):
+                        if (name5[i] < highBound):
+                            if (name5[i] >= lowBound):
+                                name_5.append(i)
+
+                    mainI_5 = []
+                    for j in range(len(name_5)):
+                        mainI_5.append(ingred[name_5[j]])
+
+                    score = np.zeros(5)
+
+                    for k in range(len(Scanned_lst)): 
+                        for l in range(len(mainI_1)): 
+                            if (mainI_1[l] == Scanned_lst[k]): 
+                                score[0] = score[0] + 1        
+                    score[0] = score[0] / len(mainI_1)
+
+                    for k in range(len(Scanned_lst)):
+                        for l in range(len(mainI_2)):
+                            if (mainI_2[l] == Scanned_lst[k]):
+                                score[1] = score[1] + 1
+                    score[1] = score[1] / len(mainI_2)
+
+                    for k in range(len(Scanned_lst)):
+                        for l in range(len(mainI_3)):
+                            if (mainI_3[l] == Scanned_lst[k]):
+                                score[2] = score[2] + 1
+                    score[2] = score[2] / len(mainI_3)
+
+                    for k in range(len(Scanned_lst)):
+                        for l in range(len(mainI_4)):
+                            if (mainI_4[l] == Scanned_lst[k]):
+                                score[3] = score[3] + 1
+                    score[3] = score[3] / len(mainI_4)
+
+                    for k in range(len(Scanned_lst)):
+                        for l in range(len(mainI_5)):
+                            if (mainI_5[l] == Scanned_lst[k]):
+                                score[4] = score[4] + 1
+                    score[4] = score[4] / len(mainI_5)
+
+                    return score
+
+                a = PrimALG(temp_1, temp_2, temp_3, temp_4, temp_5, Scanned_lst, 1, 2)
+                for i in range(len(a)):
+                    if (math.isnan(a[i])):
+                        a[i] = 0
+
+                b = PrimALG(temp_1, temp_2, temp_3, temp_4, temp_5, Scanned_lst, 0.66, 1)
+                for i in range(len(b)):
+                    if (math.isnan(b[i])):
+                        b[i] = 0
+
+                c = PrimALG(temp_1, temp_2, temp_3, temp_4, temp_5, Scanned_lst, 0.4, 0.66)
+                for i in range(len(c)):
+                    if (math.isnan(c[i])):
+                        c[i] = 0
+
+                d = PrimALG(temp_1, temp_2, temp_3, temp_4, temp_5, Scanned_lst, 0, 0.4)
+                for i in range(len(d)):
+                    if (math.isnan(d[i])):
+                        d[i] = 0
+
+                score = 0.5 * a + 0.3 * b + 0.2 * c + 0.1 * d
+
+                def bestRecipe(score, inp, Scanned_lst):
+                    index = np.where(score == score.max())[0] 
+                    if len(index) > 1:  
+                        index = index[0]  
+                    index = (int(index)+1)*10
+                    index_lst = []
+                    Rec_lst = []
+                    for i in range(1, 7): 
+                        index_lst.append(str(index + i))
+                        Rec_lst.append(inp[index_lst[i-1]])
+                        temporary = Rec_lst[i-1]
+                        Rec_lst[i-1] = temporary[1:]
+
+                    bestRec = np.zeros(len(Rec_lst))
+
+                    for j in range(len(Rec_lst)): 
+                        tempy = Rec_lst[j]
+                        for k in range(len(Scanned_lst)): 
+                            for l in range(len(tempy)): 
+                                if (tempy[l] == Scanned_lst[k]):
+                                    bestRec[j] = bestRec[j] + 1   
+                        bestRec[j] = bestRec[j] / len(tempy)
+
+                    final_index = np.where(bestRec == bestRec.max())
+                    final_index = final_index[0]
+                    final_index = (int(final_index[0])+1)+index
+                    best = Recipe_dict[str(final_index)]
+
+                    return best[1:]
+
+                best = bestRecipe(score, Recipe_dict, Scanned_lst)
+                print(best)
+
+                end_input = input("Press S to stop detecting: ")
+
+                if end_input == 's':
+                    break
+                else:
+                    empty_list = []
+
+
+            sleep(20)
+        </py-script>
         <section id="profile">
             <!--<div class="section__pic-container">
                 <img src="./assets/profile-pic.png" alt="Food E profile picture">
@@ -47,11 +529,11 @@
                 <!-- Front Page Text -->
                 <p class="section__text__p1">Hello, I'm</p>
                 <h1 class="title">Food E</h1>
-                <p class="section__text__p2">Recipe Algorithm</p>
+                <!-- <p class="section__text__p2">Recipe Algorithm</p> -->
                 <!-- Buttons to open things -->
                 <div class="btn-container">
-                    <button class="btn btn-color-2" onclick="window.open('./assets/resume-example.pdf')">Download CV</button>
-                    <button class="btn btn-color-1" onclick="location.href='./#contact'">Contact</button>
+                    <button class="btn btn-color-2" py-onClick="">Start Scan</button>
+                    <button class="btn btn-color-1" py-onClick="">How It Works</button>
                 </div>
                 <!-- Using images as buttons to open links -->
                 <div id="socials-container">
@@ -60,8 +542,8 @@
             </div>
         </section>
         <section id="projects">
-            <p class="section__text__p1">Browse My Recent</p>
-            <h1 class="title">Projects</h1>
+            <p class="section__text__p1">Best Matching</p>
+            <h1 class="title">Recipes</h1>
             <div class="experience-details-container">
                 <div class="about-containers">
                     <div class="details-container color-container">
@@ -103,10 +585,10 @@
                 <div class="nav-links-container">
                     <ul class="nav-links">
                         <!-- This line is the navigation at the top of web -->
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#contact">Contacts</a></li>
+                        <li><a onclick="location.href='index.html'">Entry</a></li>
+                        <li><a onclick="location.href='algorithm.html'">Home</a></li>
+                        <li><a onclick="location.href='database.html'">Database</a></li>
+                        <li><a onclick="location.href='design.html'">Design</a></li>
                     </ul>
                 </div>
             </nav>
