@@ -321,6 +321,34 @@ section {
     background-color: transparent;
 }
 
+
+.file-upload-container {
+    text-align: center;
+}
+
+.file-input {
+    display: none;
+}
+
+.choose-file-button {
+    display: inline-block;
+    /* padding: 10px 20px; */
+    padding: 1rem;
+    width: 6rem;
+    background-color: transparent;
+    color: #fff;
+    border: rgb(53, 53, 53) 0.1rem solid;
+    border-radius: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.choose-file-button:hover {
+    background: rgb(171, 247, 177);
+    color: black;
+}
+
 .btn {
     font-weight: 600;
     transition: all 300ms ease;
@@ -391,6 +419,7 @@ section {
 
 .about-containers {
     gap: 2rem;
+    display: inline-block;
     margin-bottom: 2rem;
     margin-top: 2rem;
 }
@@ -420,8 +449,31 @@ section {
     background: white;
     border-radius: 2rem;
     border: rgb(53, 53, 53) 0.5rem solid;
+    /* border-color: rgb(163, 163, 163); */
+    /* text-align: center; */
+    /* border: 1px solid #ccc; */
+    /* border-radius: 5px; */
+    /* margin-bottom: 20px;
+    padding: 10px;
+    display: inline-block; /* Change display to inline-block */
+    /* margin-right: 10px; Add some margin between the boxes */
+}
+
+.details-container-food {
+    /* padding: 1.5rem; */
+    /* flex: 1; */
+    background: white;
+    left: 33%;
+    border-radius: 2rem;
+    /* border: rgb(53, 53, 53) 0.5rem solid; */
     border-color: rgb(163, 163, 163);
     text-align: center;
+    border: 1px solid #ccc;
+    /* border-radius: 5px; */
+    margin-bottom: 20px;
+    padding: 10px;
+    display: inline-block; /* Change display to inline-block */
+    margin-right: 10px; /* Add some margin between the boxes */
 }
 
 .section-container {
@@ -449,7 +501,7 @@ section {
 }
 
 .experience-details-container {
-    display: flex;
+    display: inline-block;
     justify-content: center;
     flex-direction: column;
 }
@@ -558,7 +610,4 @@ footer {
 footer p {
     text-align: center;
 }
-
-
-
 
