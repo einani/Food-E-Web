@@ -82,26 +82,40 @@ function handleFileSelect(event) {
             container.classList.add('details-container-food', 'color-container');
 
             const articleContainer = document.createElement('div');
-            articleContainer.classList.add('article-container');
+            articleContainer.classList.add('ingredient-container');
 
-            const img = document.createElement('img');
-            img.src = columns[0]; // Assuming the first column contains image URLs
-            img.alt = 'Project Image';
-            img.classList.add('project-img');
-            articleContainer.appendChild(img);
+            // const img = document.createElement('img');
+            // img.src = columns[0]; // Assuming the first column contains image URLs
+            // img.alt = 'Project Image';
+            // img.classList.add('project-img');
+            // articleContainer.appendChild(img);
 
             const title = document.createElement('h2');
             const titleText = [];
-            for (let i = 1; i < columns.length; i++) {
+            // const subTitleText = [];
+            // subTitleText.classList.add('small-word');
+            for (let i = 1; i < 6; i++) {
                 titleText.push(columns[i]);
+            }
+            // if (columns.length > 5) {
+            //     subTitleText.push("...");
+            // }
+            if (columns.length > 5) {
+                titleText.push("...");
             }
             titleText.forEach(item => {
                 const paragraph = document.createElement('p');
                 paragraph.textContent = item;
                 title.appendChild(paragraph);
             });
+            // subTitleText.forEach(item => {
+            //     const paragraph = document.createElement('p');
+            //     paragraph.textContent = item;
+            //     title.appendChild(paragraph);
+            // });
+
             // title.textContent = titleText; // Assuming the second column contains project titles
-            title.classList.add('experience-sub-title', 'project-title');
+            title.classList.add('ingredient-word', 'project-title');
             container.appendChild(title);
 
             const btnContainer = document.createElement('div');

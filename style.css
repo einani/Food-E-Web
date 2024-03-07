@@ -57,6 +57,10 @@ nav {
     /* opacity: 0.5; */
 }
 
+.nav-links:hover {
+    cursor: pointer;
+}
+
 .nav-links-footer {
     gap: 1rem;
     list-style: none;
@@ -157,6 +161,13 @@ a[href]:hover {
     font-size: 1.5rem;
 }
 
+.menu-links a:hover {
+    opacity: 1.0;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
 .menu-links li {
     list-style: none;
 }
@@ -232,9 +243,9 @@ section {
 }
 
 /* Change color of each text in sphere on hover   */
-.tagcloud--item:hover {
+/* .tagcloud--item:hover {
   color: #FFC300 ;
-}
+} */
 
 .tag-cloud-container {
     position: absolute;
@@ -306,6 +317,7 @@ section {
     left: 50%;
     transform: translate(-50%, -40%);
     background-color: transparent;
+    /* background-color: white; */
 }
 
 .btn-itself {
@@ -314,11 +326,12 @@ section {
     top: 50%;
     /*right: 0;*/
     align-self: center;
-    width: 200vw;
+    width: 100vw;
     -ms-transform: translateY(-50%);
     transform: translateY(-40%);
     transform: translateX(-50%);
     background-color: transparent;
+    /* background-color: white; */
 }
 
 
@@ -341,7 +354,10 @@ section {
     border-radius: 2rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-weight: 600;
+    font-weight: 800;
+    font-family: "Poppins", sans-serif;
+    font-size: small;
+    /* font: bold; */
 }
 
 .choose-file-button:hover {
@@ -474,6 +490,7 @@ section {
     padding: 10px;
     display: inline-block; /* Change display to inline-block */
     margin-right: 10px; /* Add some margin between the boxes */
+    font-size: small;
 }
 
 .section-container {
@@ -485,6 +502,27 @@ section {
     height: 400px;
     width: 400px;
     margin: auto 0;
+}
+
+.article-container {
+    position: abolute;
+    /* left: 33%; */
+    left: 50%;
+    display: flex;
+    align-items: center;
+}
+
+.ingredient-word {
+    color: rgb(85,85,85);
+    font-weight: 10;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+    /* font-family: "Poppins", sans-serif; */
+}
+
+.small-word {
+    font-size: 0.75rem;
 }
 
 /* EXPERIENCE SECTION */
@@ -504,6 +542,18 @@ section {
     display: inline-block;
     justify-content: center;
     flex-direction: column;
+}
+
+.ingredient-container {
+    display: flex;
+    text-align: initial;
+    /* When inside of container is bigger than container they wrap under
+    unto a second row */
+    flex-wrap: wrap;
+    flex-direction: row;
+    font-size: small;
+    gap: 2.5rem;
+    justify-content: space-around;
 }
 
 .article-container {
@@ -605,9 +655,14 @@ table {
 footer {
     height: 26vh;
     margin: 0 1rem;
+    /* width: 90vw; */
 }
 
 footer p {
     text-align: center;
+    /* width: 90vw; */
 }
 
+.cpycenter {
+    text-align: center;
+}

@@ -34,6 +34,9 @@
             <div>
                 <ul class="nav-links">
                     <!-- This line is the navigation at the top of web -->
+                    <!-- <li><a href="#about" onclick="toggleMenu()">About</a></li> -->
+                    <!-- <li><a location.href="'index.html'" onclick="toggleMenu()">Entry</a></li>
+                    <li><a href="'index.html'" onclick="toggleMenu()">Entry</a></li> -->
                     <li><a onclick="location.href='index.html'">Entry</a></li>
                     <li><a onclick="location.href='algorithm.html'">Home</a></li>
                     <li><a onclick="location.href='database.html'">Database</a></li>
@@ -51,10 +54,10 @@
                     <span></span>
                 </div>
                 <div class="menu-links">
-                    <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                    <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-                    <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                    <li><a href="#contact" onclick="toggleMenu()">Contacts</a></li>
+                    <li><a onclick="location.href='index.html'">Entry</a></li>
+                    <li><a onclick="location.href='algorithm.html'">Home</a></li>
+                    <li><a onclick="location.href='database.html'">Database</a></li>
+                    <li><a onclick="location.href='design.html'">Design</a></li>
                 </div>
             </div>
         </nav>
@@ -89,9 +92,12 @@
                     <img src="./assets/linkedin.png" alt="LinkedIn" class="icon" onclick="location.href='https://linkedin.com/'">
                 </div> -->
                 <br></br>
+                <p class="section__text__p1">Best Matching Recipes:</p>
                 <br></br>
-                <p class="section__text__p1">Best Matching Recipes</p>
                 <!-- <h1 class="title">Recipes</h1>   -->
+                <div id="articleContainer" class="ingredient-container"></div>
+                <br></br>
+                <script src="script.js"></script>
             </div>
         </section>
         <!-- <input type="file" id="csvFileInput">
@@ -103,20 +109,20 @@
         <div id="paragraphContainer">
         </div>
         <script src="script.js"></script> -->
-        <section id="projects">
+        <!-- <section id="projects">
             <div class="experience-details-container">
                 <div class="about-containers">
-                    <!-- <div class="file-upload-container">
+                    <div class="file-upload-container">
                         <input type="file" id="csvFileInput" class="file-input">
                         <label for="csvFileInput" class="choose-file-button">Choose File</label>
                     </div>
-                    <br><br> -->
-                    <div id="articleContainer"></div>
+                    <br><br>
+                    <div id="articleContainer" class="article-container"></div>
                     <script src="script.js"></script>
                 </div>
             </div>
             <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'" />
-        </section>
+        </section> -->
         <footer>
             <nav>
                 <div class="nav-links-container">
