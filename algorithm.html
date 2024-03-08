@@ -19,18 +19,12 @@
         <script type="text/javascript">
         Bokeh.set_log_level("info");
         </script>
-
-        <!-- <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" /> -->
-        <!-- <script defer src="https://pyscript.net/alpha/pyscript.js"></script> -->
-        <!-- <py-env>
-            - numpy
-            - pandas
-            - panel==0.13.1a2
-        </py-env> -->
     </head>
     <body>
         <nav id="desktop-nav">
-            <div class="logo">Food E</div>
+            <div class="logo">
+                <h1 class="logo2" data-value="FOOD-E">FOOD-E</h1>
+            </div>
             <div>
                 <ul class="nav-links">
                     <!-- This line is the navigation at the top of web -->
@@ -45,7 +39,7 @@
             </div>
         </nav>
         <nav id="hamburger-nav">
-            <div class="logo">Food E</div>
+            <div data-value="FOOD-E" class="logo">FOOD-E</div>
             <div class="hamburger-menu">
                 <div class="hamburger-icon" onclick="toggleMenu()">
                     <!-- Lines of hamb menu -->
@@ -62,29 +56,16 @@
             </div>
         </nav>
         <section id="profile">
-            <!--<div class="section__pic-container">
-                <img src="./assets/profile-pic.png" alt="Food E profile picture">
-            </div>-->
             <div class="section__text">
                 <!-- Front Page Text -->
                 <p class="section__text__p1">Hello, I'm</p>
                 <h1 class="title">Food E</h1>
-                <!-- <p class="section__text__p2">Recipe Algorithm</p> -->
                 <!-- Buttons to open things -->
                 <div class="btn-container">
                     <div class="file-upload-container">
                         <input type="file" id="csvFileInput" class="file-input">
                         <label for="csvFileInput" class="choose-file-button">Choose File</label>
                     </div>
-                    <!-- class="file-input" -->
-                    <!-- class="choose-file-button" -->
-                    <!-- class="btn btn-color-1" -->
-
-                    <!-- <form action="/action_page.php">
-                        <input type="file" id="myFile" name="filename" class="btn btn-color-2">
-                        <input type="submit" class="btn btn-color-2">
-                    </form> -->
-                    <!-- <button class="btn btn-color-2" py-onClick="detection(label)">Start Scan</button> -->
                     <button class="btn btn-color-1" onclick="location.href='design.html'">How It Works</button>
                 </div>
                 <!-- Using images as buttons to open links -->
@@ -94,35 +75,11 @@
                 <br></br>
                 <p class="section__text__p1">Best Matching Recipes:</p>
                 <br></br>
-                <!-- <h1 class="title">Recipes</h1>   -->
                 <div id="articleContainer" class="ingredient-container"></div>
                 <br></br>
                 <script src="script.js"></script>
             </div>
         </section>
-        <!-- <input type="file" id="csvFileInput">
-        <br><br>
-        <table id="csvDataTable" border="1">
-        </table> -->
-        <!-- <input type="file" id="csvFileInput">
-        <br><br>
-        <div id="paragraphContainer">
-        </div>
-        <script src="script.js"></script> -->
-        <!-- <section id="projects">
-            <div class="experience-details-container">
-                <div class="about-containers">
-                    <div class="file-upload-container">
-                        <input type="file" id="csvFileInput" class="file-input">
-                        <label for="csvFileInput" class="choose-file-button">Choose File</label>
-                    </div>
-                    <br><br>
-                    <div id="articleContainer" class="article-container"></div>
-                    <script src="script.js"></script>
-                </div>
-            </div>
-            <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#contact'" />
-        </section> -->
         <footer>
             <nav>
                 <div class="nav-links-container">

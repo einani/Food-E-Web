@@ -6,60 +6,60 @@ function toggleMenu() {
     icon.classList.toggle("open");
 }
 
-document.getElementById('csvFileInput').addEventListener('change', handleFileSelect);
+// document.getElementById('csvFileInput').addEventListener('change', handleFileSelect);
 
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+// function handleFileSelect(event) {
+//     const file = event.target.files[0];
+//     const reader = new FileReader();
 
-    reader.onload = function(e) {
-        const csv = e.target.result;
-        const rows = csv.split('\n');
-        const table = document.getElementById('csvDataTable');
+//     reader.onload = function(e) {
+//         const csv = e.target.result;
+//         const rows = csv.split('\n');
+//         const table = document.getElementById('csvDataTable');
 
-        // Clear previous table content
-        table.innerHTML = '';
+//         // Clear previous table content
+//         table.innerHTML = '';
 
-        rows.forEach(row => {
-            const cells = row.split(',');
-            const tr = document.createElement('tr');
+//         rows.forEach(row => {
+//             const cells = row.split(',');
+//             const tr = document.createElement('tr');
 
-            cells.forEach(cell => {
-                const td = document.createElement('td');
-                td.textContent = cell;
-                tr.appendChild(td);
-            });
+//             cells.forEach(cell => {
+//                 const td = document.createElement('td');
+//                 td.textContent = cell;
+//                 tr.appendChild(td);
+//             });
 
-            table.appendChild(tr);
-        });
-    };
+//             table.appendChild(tr);
+//         });
+//     };
 
-    reader.readAsText(file);
-}
+//     reader.readAsText(file);
+// }
 
-document.getElementById('csvFileInput').addEventListener('change', handleFileSelect);
+// document.getElementById('csvFileInput').addEventListener('change', handleFileSelect);
 
-function handleFileSelect(event) {
-    const file = event.target.files[0];
-    const reader = new FileReader();
+// function handleFileSelect(event) {
+//     const file = event.target.files[0];
+//     const reader = new FileReader();
 
-    reader.onload = function(e) {
-        const csv = e.target.result;
-        const rows = csv.split('\n');
-        const paragraphContainer = document.getElementById('paragraphContainer');
+//     reader.onload = function(e) {
+//         const csv = e.target.result;
+//         const rows = csv.split('\n');
+//         const paragraphContainer = document.getElementById('paragraphContainer');
 
-        // Clear previous paragraphs
-        paragraphContainer.innerHTML = '';
+//         // Clear previous paragraphs
+//         paragraphContainer.innerHTML = '';
 
-        rows.forEach(row => {
-            const p = document.createElement('p');
-            p.textContent = row.trim(); // Remove leading/trailing whitespace
-            paragraphContainer.appendChild(p);
-        });
-    };
+//         rows.forEach(row => {
+//             const p = document.createElement('p');
+//             p.textContent = row.trim(); // Remove leading/trailing whitespace
+//             paragraphContainer.appendChild(p);
+//         });
+//     };
 
-    reader.readAsText(file);
-}
+//     reader.readAsText(file);
+// }
 
 document.getElementById('csvFileInput').addEventListener('change', handleFileSelect);
 
@@ -143,4 +143,108 @@ function handleFileSelect(event) {
     };
 
     reader.readAsText(file);
+}
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ-";
+
+let interval = null;
+
+document.querySelector(".logo1").onmouseover = event => {  
+    let iteration = 0;
+    
+    clearInterval(interval);
+    
+    interval = setInterval(() => {
+      event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+          if(index < iteration) {
+            return event.target.dataset.value[index];
+          }
+        
+          return letters[Math.floor(Math.random() * 27)]
+        })
+        .join("");
+      
+      if(iteration >= event.target.dataset.value.length){ 
+        clearInterval(interval);
+      }
+      
+      iteration += 1 / 3;
+    }, 30);
+}
+
+document.querySelector(".logo2").onmouseover = event => {  
+    let iteration = 0;
+    
+    clearInterval(interval);
+    
+    interval = setInterval(() => {
+      event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+          if(index < iteration) {
+            return event.target.dataset.value[index];
+          }
+        
+          return letters[Math.floor(Math.random() * 27)]
+        })
+        .join("");
+      
+      if(iteration >= event.target.dataset.value.length){ 
+        clearInterval(interval);
+      }
+      
+      iteration += 1 / 3;
+    }, 30);
+}
+
+document.querySelector(".logo3").onmouseover = event => {  
+    let iteration = 0;
+    
+    clearInterval(interval);
+    
+    interval = setInterval(() => {
+      event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+          if(index < iteration) {
+            return event.target.dataset.value[index];
+          }
+        
+          return letters[Math.floor(Math.random() * 27)]
+        })
+        .join("");
+      
+      if(iteration >= event.target.dataset.value.length){ 
+        clearInterval(interval);
+      }
+      
+      iteration += 1 / 3;
+    }, 30);
+}
+
+document.querySelector(".logo4").onmouseover = event => {  
+    let iteration = 0;
+    
+    clearInterval(interval);
+    
+    interval = setInterval(() => {
+      event.target.innerText = event.target.innerText
+        .split("")
+        .map((letter, index) => {
+          if(index < iteration) {
+            return event.target.dataset.value[index];
+          }
+        
+          return letters[Math.floor(Math.random() * 27)]
+        })
+        .join("");
+      
+      if(iteration >= event.target.dataset.value.length){ 
+        clearInterval(interval);
+      }
+      
+      iteration += 1 / 3;
+    }, 30);
 }

@@ -10,16 +10,18 @@
     </head>
     <body>
         <nav id="desktop-nav">
-            <div class="logo">Food E</div>
+            <div class="logo">
+                <h1 class="logo1" data-value="FOOD-E">FOOD-E</h1>
+            </div>
             <div>
                 <ul class="nav-links">
                     <!-- This line is the navigation at the top of web -->
-                    <li><a onclick="location.href='index.html'">Tap the Cloud to Enter</a></li>
+                    <li><a onclick="location.href='algorithm.html'">Tap the Cloud to Enter</a></li>
                 </ul>
             </div>
         </nav>
         <nav id="hamburger-nav">
-            <div class="logo">Food E</div>
+            <div data-value="FOOD-E" class="logo">FOOD-E</div>
             <div class="hamburger-menu">
                 <div class="hamburger-icon" onclick="toggleMenu()">
                     <!-- Lines of hamb menu -->
@@ -82,24 +84,14 @@
                 var color = '#ABF7B1';
                 document.querySelector('.Sphere').style.color = color;
             </script>
-            <!--<div class="section__pic-container">
-                <img src="./assets/profile-pic.png" alt="Food E profile picture">
-            </div>-->
             <div class="section__text">
                 <div class="btn-invisible">
                     <div class="btn-itself">
                         <button class="btni btn-color-3" onclick="location.href='algorithm.html'"></button>
-                    <!--<button class="btn btn-color-2" onclick="window.open('./assets/resume-example.pdf')">Download CV</button>
-                    <button class="btn btn-color-1" onclick="location.href='./#contact'">Contact</button>-->
                     </div>
                 </div>
             </div>
         </section>
-        <!-- <footer>
-            <div class="footer-cpyright">
-                <p>Copyright &#169; 2024 Ege Inanici. All Rights Reserved.</p>
-            </div>
-        </footer> -->
         <script src="script.js"></script>
     </body>
 </html>
