@@ -666,3 +666,9 @@ footer p {
 .cpycenter {
     text-align: center;
 }
+
+.footing {
+    position: absolute;
+    bottom: 10px;
+    transform: translateX(-10%);
+}
